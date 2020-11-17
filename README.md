@@ -20,7 +20,7 @@ Place all files in the same folder and run main.cpp. The results will be shown i
 ### Changing number of files to be read
 To read more or less files, and therefore test more or less graphs, simply change the value of the variable numberFiles in the main function. All files must be named in the following format: graph_#.txt, example: graph_4.txt.
 
-## About the files
+### About the files
 Here are the contents of one of the files:
 4  
 4  
