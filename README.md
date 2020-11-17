@@ -22,11 +22,11 @@ To read more or less files, and therefore test more or less graphs, simply chang
 
 ## About the files
 Here are the contents of one of the files:
-4
-4
-0,1
-0,3
-1,3
-3,2
+4  
+4  
+0,1  
+0,3  
+1,3  
+3,2  
 
 The first line is for the number of vertices in the graph, the second for the number of adjacencies, and the rest represent the adjacencies. For example, there is an directed adjacency from vertex 0 to vertex 1. Notice every adjacency is written in its own line and is represented by two numbers seperated by a comma.
