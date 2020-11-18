@@ -73,13 +73,7 @@ In graph.h
     }
 
 ### Depth First Search
-The depth first search algorithm is another way to traverse and/or search a graph. This is also an implementation of a traversal. This algorithm uses a recursive function to visit the vertices. This method also uses an array of boolean values to mark the visited vertices. It uses a "path" approach: it will visit vertices going down a path from the starting vertex, printing the vertices and marking them as visited, until it reaches a dead end or a vertex that has already been visited. Then it repeats the process for all vertices in the "path". Again, assuming all vertices can be reached, by the end of the traversal it will have visited all vertices and their respective adjacencies, so it will have visited the total number of adjacencies. Therefore, it also has a big O complexity of O(V+E).
-
-//Depth First Search (Traversal)
-    //Uses a "path" approach: it uses a recursive function to to go
-    //down the a path starting in the first vertex until it reaches a
-    //dead end or a vertex that has already been visited. Then it repeats
-    //the process for all the vertices in the "path"
+The depth first search algorithm is another way to traverse and/or search a graph. This is also an implementation of a traversal. This algorithm uses a recursive function to visit the vertices. This method also uses an array of boolean values to mark the visited vertices. It uses a "path" approach: it will visit vertices going down a path from the starting vertex, printing the vertices and marking them as visited, until it reaches a dead end or a vertex that has already been visited. Then it repeats the process for all vertices in the "path". Again, assuming all vertices can be reached, by the end of the traversal it will have visited all vertices and their respective adjacencies, so it will have visited the total number of adjacencies. Therefore, it also has a big O complexity of O(V+E).  
 
     void depthFirstSearch(int firstVertex) {
         //Create a boolean list and mark all vertices as not visited
