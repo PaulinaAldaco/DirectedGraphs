@@ -44,7 +44,7 @@ private:
     bool recursiveIsCyclic(int currentVertex, bool visited[], bool *recursionStack) {
         //If the current vertex hasn't been visited
         if(!visited[currentVertex]) {
-            // Mark current node as visited and part of recursion stack
+            // Mark current vertex as visited and part of recursion stack
             visited[currentVertex] = true;
             recursionStack[currentVertex] = true;
 
@@ -60,7 +60,7 @@ private:
                     return true;
             }
         }
-        //Remove current vertex from recursion stack
+        //Remove current vertex from recursionStack
         recursionStack[currentVertex] = false;
 
         //No cycle was found, so return false
@@ -84,7 +84,7 @@ private:
                 recursiveTopologicalSort(*i, visited, topologicalStack);
         }
 
-        //Push current node to stack
+        //Push current vertex to stack
         topologicalStack.push(currentVertex);
     }
 
@@ -125,7 +125,7 @@ private:
             }
         }
         //Otherwise, all adjacent vertices can be colored with a different color,
-        //so true the graph is bipartite
+        //so the graph is bipartite
         return true;
     }
 
@@ -195,7 +195,7 @@ public:
 
     //Function used by isTree() to check if graph is cyclic
     bool isCyclic(bool visited[]) {
-        //Create a boolean list for vertices in recursion stack
+        //Create a boolean array for vertices in recursion stack
         bool *recursionStack = new bool[number_vertices_];
         for(int i=0; i<number_vertices_; ++i)
             recursionStack[i] = false;
@@ -213,8 +213,8 @@ public:
 
     //Function to simply check if graph is cyclic
     bool isCyclic() {
-        //Create a boolean list and mark all vertices as not visited
-        //Create a boolean list for vertices in recursion stack
+        //Create a boolean array and mark all vertices as not visited
+        //Create a boolean array for vertices in recursion stack
         bool *visited = new bool[number_vertices_];
         bool *recursionStack = new bool[number_vertices_];
         for(int i=0; i<number_vertices_; ++i) {
@@ -244,12 +244,12 @@ public:
         //First check if the rule for trees is true:
         //number of adjacencies must be number of vertices minus 1
         if(number_adj_ == number_vertices_ - 1) {
-            //Create a boolean list and mark all vertices as not visited
+            //Create a boolean array and mark all vertices as not visited
             bool *visited = new bool[number_vertices_];
             for(int i=0; i<number_vertices_; ++i)
                 visited[i] = false;
 
-            //Check if graph is cyclic starting on node 0
+            //Check if graph is cyclic starting on vertex 0
             //If it's cyclic, then it's not a tree
             if(isCyclic(visited)) {
                 cout << "Graph is cyclic" << endl;
@@ -278,7 +278,7 @@ public:
         for(int i=0; i<number_vertices_; ++i)
             colors[i] = -1;
 
-        //Perform process for every node,
+        //Perform process for every vertex,
         //ensuring that all vertices will be visited
         for(int i=0; i<number_vertices_; ++i) {
             //Only perform process if vertex hasn't been processed
@@ -298,7 +298,7 @@ public:
     //repeats the process of showing, dequeuing, and getting the adjacent vertices of
     //the first vertex in the queue, until the queue is empty
     void breadthFirstSeach(int firstVertex) {
-        //Create a boolean list and mark all vertices as not visited
+        //Create a boolean array and mark all vertices as not visited
         bool *visited = new bool[number_vertices_];
         for(int i=0; i<number_vertices_; ++i)
             visited[i] = false;
@@ -338,7 +338,7 @@ public:
     //dead end or a vertex that has already been visited. Then it repeats
     //the process for all the vertices in the "path"
     void depthFirstSearch(int firstVertex) {
-        //Create a boolean list and mark all vertices as not visited
+        //Create a boolean array and mark all vertices as not visited
         bool *visited = new bool[number_vertices_];
         for(int i=0; i<number_vertices_; ++i)
             visited[i] = false;
@@ -351,15 +351,15 @@ public:
     //This function is similar to depth first search, but stores
     //vertices in a stack and prints them at the end
     void topologicalSort() {
-        //Create a boolean list and mark all nodes as not visited
+        //Create a boolean array and mark all vertices as not visited
         bool *visited = new bool[number_vertices_];
         for(int i=0; i<number_vertices_; ++i)
             visited[i] = false;
 
-        //Stack to store visited nodes
+        //Stack to store visited vertices
         stack<int> topologicalStack;
 
-        //Call recursive function for all nodes
+        //Call recursive function for all vertices
         for(int i=0; i<number_vertices_; ++i) {
             //Only call is it hasn't been visited
             if(!visited[i])
