@@ -101,7 +101,9 @@ In graph.h
     }
 
 ### Topological Sort
-A topological sort is yet another way to traverse/search a graph. This is also an implementation of a traversal. It's very similar to depth first search in the way it visits the vertices. The difference is that a topological traversal will always visit all the vertices regardless of whether they can be reached via the graph's connections, storing them in a stack and printing until the end. It's also worth noting that it will only push the current vertex to the stack when all it's adjacent vertices have already been visited and added to the stack. In this way, every vertex  will be printed before its adjacent vertices. A topological sort is only possible in directed acyclic graphs, which is why before calling the topological sort function, it's important to check if the graphis cyclic.
+A topological sort is yet another way to traverse/search a graph. This is also an implementation of a traversal. It's very similar to depth first search in the way it visits the vertices. The difference is that a topological traversal will always visit all the vertices regardless of whether they can be reached via the graph's connections, storing them in a stack and printing until the end. It's also worth noting that it will only push the current vertex to the stack when all it's adjacent vertices have already been visited and added to the stack. In this way, every vertex  will be printed before its adjacent vertices. A topological sort is only possible in directed acyclic graphs, which is why before calling the topological sort function, it's important to check if the graph is cyclic. Because this process is essentially the same as a depth first search, it also has a big O complexity of O(V+E). This is easy to see: in the function topologicalSort there is a loop the size of the number of vertices (V), and in the function recursiveTopologicalSort there is a loop the size of the current vertex's adjacencies, so that by the end of the traversal it will have visited the total number of adjacencies (E).
+
+In graph.h
 
     void topologicalSort() {
         //Create a boolean array and mark all vertices as not visited
