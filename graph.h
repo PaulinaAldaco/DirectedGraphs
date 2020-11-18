@@ -361,7 +361,7 @@ public:
 
         //Call recursive function for all vertices
         for(int i=0; i<number_vertices_; ++i) {
-            //Only call is it hasn't been visited
+            //Only call if it hasn't been visited
             if(!visited[i])
                 recursiveTopologicalSort(i,visited,topologicalStack);
         }
