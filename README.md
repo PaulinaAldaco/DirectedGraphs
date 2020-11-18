@@ -33,12 +33,8 @@ The first line is for the number of vertices in the graph, the second for the nu
 
 ## Algorithms
 ### Breadth First Search
-'   //Breadth First Search (Traversal)
-    //Uses a "neighbors" approach: it visits the starting vertex, marks it as visited,
-    //enqueues it, prints it, dequeues it, and then visits all the adjacent vertices,
-    //marks them as visited, and enqueues them only if they weren't visited yet. It then
-    //repeats the process of showing, dequeuing, and getting the adjacent vertices of
-    //the first vertex in the queue, until the queue is empty
+The breadth first search algorithm is a way to traverse and/or search a graph. This is an implementation of a traversal. It uses a queue to visit the vertices. This algorithm uses a "neighbors" approach. First it creates a boolean array to mark the vertices that have been visited, starting with all of them as not visited. It visits the starting vertex, marks it as visited, and enqueues it. Then it enters a loop where it prints the first vertex of the queue, dequeues it, visits all its adjacent vertices, marks them as visited, and enques them. Only the vertices that haven't already been visited will be enqueued. This process will be repeated until the queue is empty. 
+
     void breadthFirstSeach(int firstVertex) {
         //Create a boolean list and mark all vertices as not visited
         bool *visited = new bool[number_vertices_];
@@ -72,4 +68,4 @@ The first line is for the number of vertices in the graph, the second for the nu
                 }
             }
         }
-    }'
+    }
