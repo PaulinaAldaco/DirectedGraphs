@@ -30,3 +30,46 @@ Here are the contents of one of the files:
 3,2  
 
 The first line is for the number of vertices in the graph, the second for the number of adjacencies, and the rest represent the adjacencies. For example, there is an directed adjacency from vertex 0 to vertex 1. Notice every adjacency is written in its own line and is represented by two numbers seperated by a comma.
+
+## Algorithms
+### Breadth First Search
+'   //Breadth First Search (Traversal)
+    //Uses a "neighbors" approach: it visits the starting vertex, marks it as visited,
+    //enqueues it, prints it, dequeues it, and then visits all the adjacent vertices,
+    //marks them as visited, and enqueues them only if they weren't visited yet. It then
+    //repeats the process of showing, dequeuing, and getting the adjacent vertices of
+    //the first vertex in the queue, until the queue is empty
+    void breadthFirstSeach(int firstVertex) {
+        //Create a boolean list and mark all vertices as not visited
+        bool *visited = new bool[number_vertices_];
+        for(int i=0; i<number_vertices_; ++i)
+            visited[i] = false;
+
+        //Queue to store visited vertices
+        queue<int> q;
+
+        //Mark starting vertex as visited and enqueue it
+        visited[firstVertex] = true;
+        q.push(firstVertex);
+
+        //Iterator for getting adjacent vertices
+        list<int>::iterator i;
+
+        //While the queue is not empty
+        while(!q.empty()) {
+            //Get first vertex and print it
+            firstVertex = q.front();
+            cout << firstVertex << " ";
+            //Dequeue vertex
+            q.pop();
+
+            //Visit all adjacent vertices of current vertex
+            for(i=adj_list_[firstVertex].begin(); i!=adj_list_[firstVertex].end(); ++i) {
+                //If the vertex hasn't been visited, enqueue it and mark as visited
+                if(!visited[*i]) {
+                    q.push(*i);
+                    visited[*i] = true;
+                }
+            }
+        }
+    }'
