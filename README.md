@@ -21,7 +21,7 @@ Place all files in the same folder and run main.cpp. The results will be shown i
 To read more or less files, and therefore test more or less graphs, simply change the value of the variable numberFiles in the main function. All files must be named in the following format: graph_#.txt, example: graph_4.txt.
 
 ### About the files
-Here are the contents of one of the files:
+Here are the contents of one of the files:  
 4  
 4  
 0,1  
@@ -29,11 +29,13 @@ Here are the contents of one of the files:
 1,3  
 3,2  
 
-The first line is for the number of vertices in the graph, the second for the number of adjacencies, and the rest represent the adjacencies. For example, there is an directed adjacency from vertex 0 to vertex 1. Notice every adjacency is written in its own line and is represented by two numbers seperated by a comma.
+The first line is for the number of vertices in the graph, the second for the number of adjacencies, and the rest represent the adjacencies. For example, there is a directed adjacency from vertex 0 to vertex 1. Notice every adjacency is written on its own line and is represented by two numbers seperated by a comma.
 
 ## Algorithms
 ### Breadth First Search
-The breadth first search algorithm is a way to traverse and/or search a graph. This is an implementation of a traversal. It uses a queue to visit the vertices. This algorithm uses a "neighbors" approach. First it creates a boolean array to mark the vertices that have been visited, starting with all of them as not visited. It visits the starting vertex, marks it as visited, and enqueues it. Then it enters a loop where it prints the first vertex of the queue, dequeues it, visits all its adjacent vertices, marks them as visited, and enques them. Only the vertices that haven't already been visited will be enqueued. This process will be repeated until the queue is empty. For every iteration, it will visit a vertex and all its adjacent vertices, so that by the end of the traversal it will have visited all vertices and all adjacencies. This is why the breadth first search algorithm has a big O complexity of O(V+E), where V is the number of vertices and E the number of "edges" or adjacencies.
+The breadth first search algorithm is a way to traverse and/or search a graph. This is an implementation of a traversal. It uses a queue to visit the vertices. This algorithm uses a "neighbors" approach. First it creates a boolean array to mark the vertices that have been visited, starting with all of them as not visited. It visits the starting vertex, marks it as visited, and enqueues it. Then it enters a loop where it prints the first vertex of the queue, dequeues it, visits all its adjacent vertices, marks them as visited, and enques them. Only the vertices that haven't already been visited will be enqueued. This process will be repeated until the queue is empty. For every iteration, it will visit a vertex and all its adjacent vertices. Therefore, assuming all vertices can be reached, by the end of the traversal it will have visited all vertices and all adjacencies. This is why the breadth first search algorithm has a big O complexity of O(V+E), where V is the number of vertices and E the number of "edges" or adjacencies.  
+
+In graph.h
 
     void breadthFirstSeach(int firstVertex) {
         //Create a boolean list and mark all vertices as not visited
@@ -67,5 +69,37 @@ The breadth first search algorithm is a way to traverse and/or search a graph. T
                     visited[*i] = true;
                 }
             }
+        }
+    }
+
+### Depth First Search
+The depth first search algorithm is another way to traverse and/or search a graph. This is also an implementation of a traversal. This algorithm uses a recursive function to visit the vertices. This method also uses an array of boolean values to mark the visited vertices. It uses a "path" approach: it will visit vertices going down a path from the starting vertex, printing the vertices and marking them as visited, until it reaches a dead end or a vertex that has already been visited. Then it repeats the process for all vertices in the "path"
+
+//Depth First Search (Traversal)
+    //Uses a "path" approach: it uses a recursive function to to go
+    //down the a path starting in the first vertex until it reaches a
+    //dead end or a vertex that has already been visited. Then it repeats
+    //the process for all the vertices in the "path"
+
+    void depthFirstSearch(int firstVertex) {
+        //Create a boolean list and mark all vertices as not visited
+        bool *visited = new bool[number_vertices_];
+        for(int i=0; i<number_vertices_; ++i)
+            visited[i] = false;
+
+        //Call recursive helper function
+        recursiveDepthFirstSearch(firstVertex,visited);
+    }
+    
+    void recursiveDepthFirstSearch(int currentVertex, bool visited[]) {
+        //Mark current vertex as visited and print
+        visited[currentVertex] = true;
+        cout << currentVertex << " ";
+
+        //Recur for all adjacent vertices that have not been visited yet
+        list<int>::iterator i;
+        for(i=adj_list_[currentVertex].begin(); i!=adj_list_[currentVertex].end(); ++i) {
+            if(!visited[*i])
+                recursiveDepthFirstSearch(*i,visited);
         }
     }
