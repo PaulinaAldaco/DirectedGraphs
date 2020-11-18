@@ -1,4 +1,4 @@
-# Graphs
+# Directed Graphs
 This is an implementation of a directed graph (data structure), its traversals, and its complementary algorithms. These include:
 * Breadth First Search (traversal)
 * Depth First Search (traversal)
