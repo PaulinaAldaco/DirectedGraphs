@@ -38,7 +38,7 @@ The breadth first search algorithm is a way to traverse and/or search a graph. T
 In graph.h
 
     void breadthFirstSeach(int firstVertex) {
-        //Create a boolean list and mark all vertices as not visited
+        //Create a boolean array and mark all vertices as not visited
         bool *visited = new bool[number_vertices_];
         for(int i=0; i<number_vertices_; ++i)
             visited[i] = false;
@@ -75,8 +75,10 @@ In graph.h
 ### Depth First Search
 The depth first search algorithm is another way to traverse and/or search a graph. This is also an implementation of a traversal. This algorithm uses a recursive function to visit the vertices. This method also uses an array of boolean values to mark the visited vertices. It uses a "path" approach: it will visit vertices going down a path from the starting vertex, printing the vertices and marking them as visited, until it reaches a dead end or a vertex that has already been visited. Then it repeats the process for all vertices in the "path". Again, assuming all vertices can be reached, by the end of the traversal it will have visited all vertices and their respective adjacencies, so it will have visited the total number of adjacencies. Therefore, it also has a big O complexity of O(V+E).  
 
+In graph.h
+
     void depthFirstSearch(int firstVertex) {
-        //Create a boolean list and mark all vertices as not visited
+        //Create a boolean array and mark all vertices as not visited
         bool *visited = new bool[number_vertices_];
         for(int i=0; i<number_vertices_; ++i)
             visited[i] = false;
@@ -96,4 +98,46 @@ The depth first search algorithm is another way to traverse and/or search a grap
             if(!visited[*i])
                 recursiveDepthFirstSearch(*i,visited);
         }
+    }
+
+### Topological Sort
+A topological sort is yet another way to traverse/search a graph. This is also an implementation of a traversal. It's very similar to depth first search in the way it visits the vertices. The difference is that a topological traversal will always visit all the vertices regardless of whether they can be reached via the graph's connections, storing them in a stack and printing until the end. It's also worth noting that it will only push the current vertex to the stack when all it's adjacent vertices have already been visited and added to the stack. In this way, every vertex  will be printed before its adjacent vertices. A topological sort is only possible in directed acyclic graphs, which is why before calling the topological sort function, it's important to check if the graphis cyclic.
+
+    void topologicalSort() {
+        //Create a boolean array and mark all vertices as not visited
+        bool *visited = new bool[number_vertices_];
+        for(int i=0; i<number_vertices_; ++i)
+            visited[i] = false;
+
+        //Stack to store visited vertices
+        stack<int> topologicalStack;
+
+        //Call recursive function for all vertices
+        for(int i=0; i<number_vertices_; ++i) {
+            //Only call if it hasn't been visited
+            if(!visited[i])
+                recursiveTopologicalSort(i,visited,topologicalStack);
+        }
+
+        //Print stack
+        while(!topologicalStack.empty()) {
+            cout << topologicalStack.top() << " ";
+            topologicalStack.pop();
+        }
+    }
+    
+    void recursiveTopologicalSort(int currentVertex, bool visited[], stack<int>& topologicalStack) {
+        //Mark current vertex as visited
+        visited[currentVertex] = true;
+
+        //Recur for all adjacent vertices
+        list<int>::iterator i;
+        for(i=adj_list_[currentVertex].begin(); i!=adj_list_[currentVertex].end(); ++i) {
+            //Only recur if it hasn't been visited
+            if(!visited[*i])
+                recursiveTopologicalSort(*i, visited, topologicalStack);
+        }
+
+        //Push current vertex to stack
+        topologicalStack.push(currentVertex);
     }
